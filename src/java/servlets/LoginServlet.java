@@ -26,16 +26,13 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         session.setAttribute("sessionUsername", username);
         
-//        if(username == null || username.equals("") || password == null || password.equals("")) {
-//            request.setAttribute("errorMessage", "Please enter both the username and the password.");
-//            request.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-//        } 
-
-        String adminUsername = "admin";
-        String adminPassword = "password";
-        if(username.equals(adminUsername) && password.equals(adminPassword)) {
+        if(username == null || username.equals("") || password == null || password.equals("")) {
+            request.setAttribute("errorMessage", "Please enter both the username and the password.");
+            request.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        } else if(username.equals("admin") && password.equals("password") || username.equals("admin2")) {
             response.sendRedirect("/HomeInventory/admin");
-            //request.getServletContext().getRequestDispatcher("/WEB-INF/inventory.jsp").forward(request, response);
+        } else if(username.equals("anne") && password.equals("password")) {
+            response.sendRedirect("/HomeInventory/inventory");
         }
         
     }

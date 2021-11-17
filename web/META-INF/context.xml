@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/HomeInventory"/> 
-<Resource
+<Context path="/HomeInventory">
+    <Resource
         name="jdbc/homeinventorydb"
-        url="jdbc:mysql://localhost:3307/homeinventorydb" 
+        url="jdbc:mysql://localhost:3307/homeinventorydb"
         username="root"
         password="password"
+        driverClassName="com.mysql.jdbc.Driver"
         maxActive="100"
         maxIdle="30"
         maxWait="10000" 
         logAbandoned="true"
         removeAbandoned="true" 
         removeAbandonedTimeout="60"
-        driverClassName="com.mysql.jdbc.Driver"
-        type="javax.sql.DataSource"
         auth="Container"
+        type="javax.sql.DataSource"
     />
 </Context>
