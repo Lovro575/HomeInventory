@@ -8,7 +8,6 @@ package dataaccess;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import models.Items;
 import models.Users;
 
 /**
@@ -16,13 +15,11 @@ import models.Users;
  * @author Lovro H
  */
 public class UsersDB {
-/**
- * probably have to change the parameters of "item" because this class is for user
- */
-    
+
+//probably have to change the parameters of "item" because this class is for user
     public List<Users> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        
+
         try {
             List<Users> users = em.createNamedQuery("Users.findAll", Users.class).getResultList();
             return users;
@@ -30,10 +27,10 @@ public class UsersDB {
             em.close();
         }
     }
-    
+
     public Users get(String username) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        
+
         try {
             Users user = em.find(Users.class, username);
             return user;
@@ -41,16 +38,14 @@ public class UsersDB {
             em.close();
         }
     }
-    
-    public void insert(Items item) throws Exception {
+
+    public void insert(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        
+
         try {
-            Users user = item.getOwner();
-            user.getItemsList().add(item);
             trans.begin();
-            em.persist(item);
+            em.persist(user);
             trans.commit();
         } catch (Exception ex) {
             trans.rollback();
@@ -58,31 +53,13 @@ public class UsersDB {
             em.close();
         }
     }
-    
-    public void update(Items item) throws Exception {
+
+    public void update(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        
+
         try {
             trans.begin();
-            em.merge(item);
-            trans.commit();
-        } catch (Exception ex) {
-            trans.rollback();
-        } finally {
-            em.close();
-        }
-    }
-    
-    public void delete(Items item) throws Exception {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        
-        try {
-            Users user = item.getOwner();
-            user.getItemsList().remove(item);
-            trans.begin();
-            em.remove(em.merge(item));
             em.merge(user);
             trans.commit();
         } catch (Exception ex) {
@@ -91,5 +68,20 @@ public class UsersDB {
             em.close();
         }
     }
-    
+
+    public void delete(Users user) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            em.remove(em.merge(user));
+            trans.commit();
+        } catch (Exception ex) {
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+
 }

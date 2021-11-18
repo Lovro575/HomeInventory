@@ -31,23 +31,23 @@
                     <td>Delete</td>
                 </tr>
                 
-                <form>
-                    <c:forEach var="???" items="???">
+                <form action="inventory" method="POST">
+                    <c:forEach var="items" items="${items}">
                         <td name="itemCategoty">category here</td>
-                        <td name="itemName">name here</td>
-                        <td name="itemPrice">price here</td>
+                        <td name="itemName">${items.itemName}</td>
+                        <td name="itemPrice">${items.price}</td>
                         
                         <td>
-                            <input type="submit" value="Save">
-                            <input type="hidden" name="action" value="saveAdd">
+                            <input type="submit" value="Delete">
+                            <input type="hidden" name="action" value="delete">
                         </td>
                     </c:forEach>
                 </form>
-                    
+
             </table>
             
         <!--Add item form-->
-        <form>
+        <form> 
             <h2>Add Item</h2>
             <label>Category:</label>
             <input type="text" name="category" value="">

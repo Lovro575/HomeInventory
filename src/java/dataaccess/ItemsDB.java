@@ -48,6 +48,7 @@ public class ItemsDB {
             user.getItemsList().add(item);
             trans.begin();
             em.persist(item);
+            em.merge(user);
             trans.commit();
         } catch (Exception ex) {
             trans.rollback();

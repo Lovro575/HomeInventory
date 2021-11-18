@@ -7,6 +7,7 @@ package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import models.Categories;
 
 /**
@@ -32,6 +33,21 @@ public class CategoriesDB {
         try {
             Categories categories = em.find(Categories.class, index);
             return categories;
+        } finally {
+            em.close();
+        }
+    }
+
+    public void delete(Categories categories) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        
+        try {
+            trans.begin();
+            em.remove(em.merge(categories));
+            trans.commit();
+        } catch (Exception ex) {
+            trans.rollback();
         } finally {
             em.close();
         }
