@@ -22,73 +22,72 @@
 
 
         <h2>Manage Users</h2>
-        <form>
-        <table cellpadding="5" border="1">
+            <table cellpadding="6" border="1">
 
-            <tr>
-                <td>Username</td>
-                <td>First Name</td>
-                <td>Lase Name</td>
-                <td>Delete</td>
-                <td>Edit</td>
-            </tr>
-            
-           
-            <form method="POST" action="admin">
-                    <c:forEach items="${users}" var="users">
-                        
-                        <input name="uName" value="${users.username}"> asd
-                        <input name="fName" value="${users.firstName}">
-                        <input name="lName" value="${users.lastName}">      
-                        
-                        <input type="submit" value="Edit"> 
-                        <input type="hidden" name="action" value="editUser">
-                    
-                        <input type="submit" value="Delete">
-                        <input type="hidden" name="action" value="deleteUser">
-                    
-                    </c:forEach>
-                </form>
-                  
-    </table>
-</form>
-    <!--Add user form-->
-    <form method="POST" action="admin">
-        <h2>Add User</h2>
-        <label>Username:</label>
-        <input type="text" name="username" value="">
-        <br>
-        <label>Password:</label>
-        <input type="text" name="password" value="">
-        <br>
-        <label>Email:</label>
-        <input type="text" name="email" value="">
-        <br>
-        <label>First Name:</label>
-        <input type="text" name="firstname" value="">
-        <br>
-        <label>Last Name:</label>
-        <input type="text" name="lastname" value="">
-        <br>
-        <input type="submit" value="Save">
-        <input type="hidden" name="action" value="saveAdd">
-    </form>
+                <tr>
+                    <td>Username</td>
+                    <td>First Name</td>
+                    <td>Lase Name</td>
+                    <td>Delete</td>
+                    <td>Edit</td>
+                </tr>
 
-    <!--Edit user form-->
-    <form method="POST" action="admin">
-        <h2>Edit User</h2>
-        <input type="text" name="editUsername" value="">
-        <br>
-        <input type="text" name="eidtEmail" value="">
-        <br>
-        <input type="text" name="editFirstname" value="">
-        <br>
-        <input type="text" name="editLastname" value="">
-        <br>
-        <input type="submit" value="Save">
-        <input type="hidden" name="action" value="saveAdd">
-        <input type="submit" value="Cancel">
-        <input type="hidden" name="action" value="cancelEdit">
-    </form>
-</body>
+                <tr>
+                    <form method="POST" action="admin">
+                        <c:forEach items="${users}" var="users">
+                            <td name="uName" value="${users.username}">${users.username}</td>
+                            <td name="fName" value="${users.firstName}">${users.firstName}</td>
+                            <td name="lName" value="${users.lastName}">${users.lastName}</td>
+                            <td>
+                                <input type="submit" value="Edit"> 
+                                <input type="hidden" name="action" value="editUser">
+                            </td>
+                            <td>
+                                <input type="submit" value="Delete">
+                                <input type="hidden" name="action" value="deleteUser">
+                            </td>
+                        </c:forEach>
+                    </form>
+                </tr>
+            </table>
+
+        <!--Add user form-->
+        <form method="POST" action="admin">
+            <h2>Add User</h2>
+            <label>Username:</label>
+            <input type="text" name="username" value="">
+            <br>
+            <label>Password:</label>
+            <input type="text" name="password" value="">
+            <br>
+            <label>Email:</label>
+            <input type="text" name="email" value="">
+            <br>
+            <label>First Name:</label>
+            <input type="text" name="firstname" value="">
+            <br>
+            <label>Last Name:</label>
+            <input type="text" name="lastname" value="">
+            <br>
+            <input type="submit" value="Save">
+            <input type="hidden" name="action" value="saveAdd">
+        </form>
+
+        <!--Edit user form-->  
+        <form method="POST" action="admin">
+            <h2>Edit User</h2>
+            <input type="text" name="editUsername" value="${username}">
+            <br>
+            <input type="text" name="editPassword" value="${password}"
+            <br>
+            <input type="text" name="editEmail" value="${email}">
+            <br>
+            <input type="text" name="editFirstname" value="${firstname}">
+            <br>
+            <input type="text" name="editLastname" value="${lastname}">
+            <br>
+            <input type="submit" value="Save">
+            <input type="hidden" name="action" value="saveEdit">
+        </form>
+    </body>
 </html>

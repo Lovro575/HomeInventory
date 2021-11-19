@@ -2,7 +2,7 @@
 <Context path="/HomeInventory">
     <Resource
         name="jdbc/homeinventorydb"
-        url="jdbc:mysql://localhost:3307/homeinventorydb2"
+        url="jdbc:mysql://localhost:3307/homeinventorydb"
         username="root"
         password="password"
         maxActive="100"
