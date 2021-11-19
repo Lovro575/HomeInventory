@@ -16,13 +16,13 @@
         <form method="GET" action="admin">
             <h1>Home Inventory</h1>
             <h3>Menu</h3>
-            <p><a href="/HomeInventory/inventory">Inventory page link goes here</a></p>
-            <p><a href="/HomeInventory/admin">Admin page link goes here</a></p>
-            <p><a href="/HomeInventory/login">Logout link goes here</a></p>
+            <p><a href="/HomeInventory/inventory">Inventory</a></p>
+            <p><a href="/HomeInventory/login">Logout</a></p>
         </form>
 
 
         <h2>Manage Users</h2>
+        <form>
         <table cellpadding="5" border="1">
 
             <tr>
@@ -33,10 +33,11 @@
                 <td>Edit</td>
             </tr>
             
-            <td>
-                <form>
+           
+            <form method="POST" action="admin">
                     <c:forEach items="${users}" var="users">
-                        <input name="uName" value="${users.username}">
+                        
+                        <input name="uName" value="${users.username}"> asd
                         <input name="fName" value="${users.firstName}">
                         <input name="lName" value="${users.lastName}">      
                         
@@ -48,9 +49,9 @@
                     
                     </c:forEach>
                 </form>
-            </td>        
+                  
     </table>
-
+</form>
     <!--Add user form-->
     <form method="POST" action="admin">
         <h2>Add User</h2>
@@ -83,11 +84,9 @@
         <input type="text" name="editFirstname" value="">
         <br>
         <input type="text" name="editLastname" value="">
-        <input type="submit" value="Save">
-        <input type="hidden" name="action" value="saveAdd">
         <br>
         <input type="submit" value="Save">
-        <input type="hidden" name="action" value="saveEdit">
+        <input type="hidden" name="action" value="saveAdd">
         <input type="submit" value="Cancel">
         <input type="hidden" name="action" value="cancelEdit">
     </form>

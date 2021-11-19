@@ -33,6 +33,7 @@ public class ItemsService {
         
     public void insert(int itemID, int category, String itemName, double price, String owner) throws Exception {
         Items items = new Items(itemID, itemName, price);
+        
         //get the category
         CategoriesDB categoriesDB = new CategoriesDB();
         Categories categories = categoriesDB.get(category);

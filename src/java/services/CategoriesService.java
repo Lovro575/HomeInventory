@@ -40,12 +40,5 @@ public class CategoriesService {
         }
         return null;
     }
-
-    public void delete(int categoryID) {
-        Categories categories = new Categories();
-        categories.setCategoryID(categoryID);
-        CategoriesDB categoryDB = new CategoriesDB();
-        categoryDB.delete(categories);
-    }
     
 }

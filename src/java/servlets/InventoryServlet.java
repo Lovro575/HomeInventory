@@ -13,7 +13,6 @@ import models.Categories;
 import models.Items;
 import services.CategoriesService;
 import services.ItemsService;
-import sun.util.logging.PlatformLogger;
 
 public class InventoryServlet extends HttpServlet {
 
@@ -26,18 +25,6 @@ public class InventoryServlet extends HttpServlet {
         List<Categories> categories = null;
         CategoriesService cs = new CategoriesService();
 
-        String action = request.getParameter("action");
-        String itemCategoty = request.getParameter("category");
-//        int itemCategotyNumber = Integer.parseInt(itemCategoty);
-//
-//        if (action != null) {
-//            switch (action) {
-//                case "delete":
-//                    cs.delete(itemCategotyNumber);
-//                    break;
-//            }
-//        }
-        
         try {
             items = is.getAll();
             request.setAttribute("items", items);
@@ -60,7 +47,7 @@ public class InventoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Items> items = null;
+        //List<Items> items = null;
         ItemsService is = new ItemsService();
         List<Categories> categories = null;
         CategoriesService cs = new CategoriesService();
@@ -68,8 +55,8 @@ public class InventoryServlet extends HttpServlet {
         HttpSession session = request.getSession();
            
         String action = request.getParameter("action");
-        String itemCategoty = request.getParameter("category");
-        int itemCategotyNumber = Integer.parseInt("itemCategoty");
+        String dropDownCategory = request.getParameter("category");
+        int itemCategotyNumber = Integer.parseInt("dropDownCategory");
         String itemName = request.getParameter("name");
         String itemPrice = request.getParameter("price");
          double itemPriceNumber = Double.parseDouble(itemPrice);
@@ -77,11 +64,18 @@ public class InventoryServlet extends HttpServlet {
         try {
             switch(action) {
                 case "saveAdd":
-                    Items item = new Items();
+                    Items itemToAdd = new Items();
                     String owner = (String) session.getAttribute("sessionUsername");
-                    if(itemCategoty.length() > 0 && itemName.length() > 0 && itemPrice.length() > 0) {
-                        is.insert(item.getItemID(), itemCategotyNumber, itemName, itemPriceNumber, owner);
+                    if(dropDownCategory.length() > 0 && itemName.length() > 0 && itemPrice.length() > 0) {
+                        is.insert(itemToAdd.getItemID(), itemCategotyNumber, itemName, itemPriceNumber, owner);
+                        List<Items> items = is.getAll();
+                        request.setAttribute("items", items);
                     }
+                    break;
+                case "delete":
+                    Items itemToDelete = new Items();
+                    int itemId = itemToDelete.getItemID();
+                    is.delete(itemId);
                     break;
             }
         } catch (Exception ex) {
@@ -89,18 +83,12 @@ public class InventoryServlet extends HttpServlet {
         }
         
         try {
-            items = is.getAll();
+            List<Items> items = is.getAll();
             request.setAttribute("items", items);
         } catch (Exception ex) {
             Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        try {
-            categories = cs.getAll();
-            request.setAttribute("categories", categories);
-        } catch (Exception ex) {
-            Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         request.getServletContext().getRequestDispatcher("/WEB-INF/inventory.jsp").forward(request, response);
         return;
     }

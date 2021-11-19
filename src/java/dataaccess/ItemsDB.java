@@ -21,8 +21,8 @@ public class ItemsDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            List<Items> item = em.createNamedQuery("Items.findAll", Items.class).getResultList();
-            return item;
+            List<Items> items = em.createNamedQuery("Items.findAll", Items.class).getResultList();
+            return items;
         } finally {
             em.close();
         }
@@ -32,8 +32,8 @@ public class ItemsDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Items item = em.find(Items.class, itemID);
-            return item;
+            Items items = em.find(Items.class, itemID);
+            return items;
         } finally {
             em.close();
         }

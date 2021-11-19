@@ -2,10 +2,9 @@
 <Context path="/HomeInventory">
     <Resource
         name="jdbc/homeinventorydb"
-        url="jdbc:mysql://localhost:3307/homeinventorydb"
+        url="jdbc:mysql://localhost:3307/homeinventorydb2"
         username="root"
         password="password"
-        driverClassName="com.mysql.jdbc.Driver"
         maxActive="100"
         maxIdle="30"
         maxWait="10000" 
