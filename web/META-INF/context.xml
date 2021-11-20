@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/HomeInventory">
-    <Resource
+    <Resource 
         name="jdbc/homeinventorydb"
-        url="jdbc:mysql://localhost:3307/homeinventorydb"
-        username="root"
-        password="password"
-        maxActive="100"
-        maxIdle="30"
+        url="jdbc:mysql://localhost:3307/homeinventorydb" 
+        auth="Container" 
+        logAbandoned="true" 
+        maxActive="100" 
+        maxIdle="30" 
         maxWait="10000" 
-        logAbandoned="true"
+        password="password" 
         removeAbandoned="true" 
-        removeAbandonedTimeout="60"
-        auth="Container"
-        type="javax.sql.DataSource"
-    />
+        removeAbandonedTimeout="60" 
+        type="javax.sql.DataSource"         
+        username="root"/>
 </Context>

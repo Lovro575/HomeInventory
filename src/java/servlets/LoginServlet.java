@@ -33,8 +33,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/HomeInventory/admin");
         } else if(username.equals("anne") && password.equals("password")) {
             response.sendRedirect("/HomeInventory/inventory");
-        }
-        
+        } 
     }
 
 
