@@ -15,8 +15,7 @@ import models.Users;
  * @author Lovro H
  */
 public class UsersDB {
-
-//probably have to change the parameters of "item" because this class is for user
+    
     public List<Users> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 

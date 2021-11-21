@@ -42,8 +42,6 @@ public class InventoryServlet extends HttpServlet {
 
         //List<Items> items = null;
         ItemsService is = new ItemsService();
-        List<Categories> categories = null;
-        CategoriesService cs = new CategoriesService();
         
         HttpSession session = request.getSession();
            
