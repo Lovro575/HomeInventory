@@ -24,33 +24,37 @@
         <table cellpadding="5" border="1">
 
             <tr>
-                <td>Category</td>
+                <td>Category</td> 
+            </tr>
+            <form method="POST" action="inventory">
+                <c:forEach var="categories" items="${categories}">
+                    <tr>
+                        <td <input name="itemCategory" type="hidden" value="${categories.categoryName}">${categories.categoryName} </td>
+                    </tr>
+                </c:forEach>
+            </form>
+            <tr>
                 <td>Name</td>
                 <td>Price</td>
                 <td>Delete</td>
             </tr>
-
-            <tr>
             <form method="POST" action="inventory">
-                <c:forEach var="items" items="${items}">
-                    <c:forEach var="categories" items="${categories}">
-                        <tr>
-                            <td <input name="itemCategory" type="hidden" value="${categories.categoryName}">${categories.categoryName} </td>
-                            <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
-                            <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
-                            <td>
-                                <input type="submit" value="Delete">
-                                <input type="hidden" name="action" value="delete">
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </c:forEach>
-            </form>
-        </tr>
+            <c:forEach var="items" items="${items}">
+                <tr>
+                    <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
+                    <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
+                    <td>
+                        <input type="submit" value="Delete">
+                        <input type="hidden" name="action" value="delete">
+                    </td>
+                </tr>
+            </c:forEach>
+        </form>
+
     </table>
 
     <!--Add item form-->
-    <form> 
+    <form method="POST" action="inventory"> 
         <h2>Add Item</h2>
         <select name="category">
             <option value="Kitchen">Kitchen</option>

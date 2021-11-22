@@ -59,6 +59,7 @@
 
                             <input type="submit" value="Edit"> 
                             <input type="hidden" name="action" value="editUser">
+                            <input type="hidden" value="${users.username}">
                         </td>
                         <td>
                             <a href="admin?action=deleteUser&amp;uName=${users.username}">Delete</a>
