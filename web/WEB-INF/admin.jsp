@@ -27,10 +27,11 @@
                 <td>First Name</td>
                 <td>Lase Name</td>
                 <td>Active</td>
+                <td>Admin</td>
                 <td>Edit</td>
                 <td>Delete</td>
             </tr>
-            
+
             <tr>
             <form method="POST" action="admin">
                 <c:forEach items="${users}" var="users">
@@ -38,16 +39,31 @@
                         <td> <input name="uName" type="hidden" value="${users.username}">${users.username} </td> 
                         <td> <input name="fName" type="hidden" value="${users.firstName}">${users.firstName} </td>
                         <td> <input name="lName" type="hidden" value="${users.lastName}">${users.lastName} </td>
+
                         <td>
-                            <input type="checkbox" disabled>
+                            <c:if test="${users.active == true}">
+                            <td>
+                                <input type="checkbox" disabled checked>
+                            </td>
+                        </c:if>
                         </td>
                         <td>
+                            <c:if test="${users.isAdmin == true}">
+                            <td>
+                                <input type="checkbox" disabled checked>
+                            </td>
+                        </c:if>
+                        </td>
+                        <td>
+<!--                            <a href="admin?action=editUser&amp;uName=${users.username}">Edit</a>-->
+
                             <input type="submit" value="Edit"> 
                             <input type="hidden" name="action" value="editUser">
                         </td>
                         <td>
-                            <input type="submit" value="Delete">
-                            <input type="hidden" name="action" value="deleteUser">
+                            <a href="admin?action=deleteUser&amp;uName=${users.username}">Delete</a>
+                            <!--                            <input type="submit" value="Delete">
+                                                        <input type="hidden" name="action" value="deleteUser">-->
                         </td>
                     </tr>
                 </c:forEach>

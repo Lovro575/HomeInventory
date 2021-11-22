@@ -1,6 +1,5 @@
 package servlets;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Categories;
 import models.Items;
+import models.Users;
 import services.CategoriesService;
 import services.ItemsService;
 
@@ -21,7 +21,6 @@ public class InventoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // List<Items> items = null;
         ItemsService is = new ItemsService();
         CategoriesService cs = new CategoriesService();
 
@@ -47,6 +46,7 @@ public class InventoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        Users users = new Users();
         ItemsService is = new ItemsService();
         CategoriesService cs = new CategoriesService();
 

@@ -47,7 +47,7 @@ public class AdminServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "saveAdd":
+                case "Save":
                     String addUsername = request.getParameter("username");
                     String addPassword = request.getParameter("password");
                     String addEmail = request.getParameter("email");
@@ -57,18 +57,13 @@ public class AdminServlet extends HttpServlet {
                         us.insert(addLastname, addPassword, addEmail, addFirstname, addLastname, active, active);
                     }
                     break;
-                case "deleteUser":
-                    String usernameDelete = request.getParameter("uName");
-                    Users deleteUsers = us.get(usernameDelete);
-                    String deleteUser = deleteUsers.toString();
-                    us.delete(deleteUser);
-                    break;
                 case "editUser":
+
                     String usernameEdit = request.getParameter("uName");
                     String firstnameEdit = request.getParameter("fName");
                     String lastnameEdit = request.getParameter("lName");
                     Users editUsers = us.get(usernameEdit);
-                    request.setAttribute("editUsers", us.getAll());
+                    request.setAttribute("editUsers", editUsers);
                     break;
                 case "saveEdit":
                     String editUsername = request.getParameter("editUsername");
@@ -79,6 +74,12 @@ public class AdminServlet extends HttpServlet {
                     if (editUsername.length() > 0 && editPassword.length() > 0 && editEmail.length() > 0 && editFirstname.length() > 0 && editLastname.length() > 0) {
                         us.update(editUsername, editPassword, editEmail, editFirstname, editLastname, active, active);
                     }
+                    break;
+                case "deleteUser":
+                    String usernameDelete = request.getParameter("uName");
+                    Users deleteUsers = us.get(usernameDelete);
+                    String deleteUser = deleteUsers.toString();
+                    us.delete(deleteUser);
                     break;
             }
 //            request.getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
@@ -95,7 +96,6 @@ public class AdminServlet extends HttpServlet {
         }
 
         request.getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
-        return;
     }
 
 }

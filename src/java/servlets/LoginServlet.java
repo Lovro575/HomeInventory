@@ -35,7 +35,8 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        session.setAttribute("sessionUsername", username);
+        Users user = new Users();
+        session.setAttribute("sessionUsername", user.getFirstName());
 
         //error cheching and login validation
         if (username == null || username.equals("") || password == null || password.equals("")) {

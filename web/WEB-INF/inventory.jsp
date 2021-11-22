@@ -16,7 +16,6 @@
         <form>
             <h1>Home Inventory</h1>
             <h3>Menu</h3>
-            <!--            <p><a href="/HomeInventory/admin">Admin</a></p>-->
             <p><a href="/HomeInventory/login">Logout</a></p>
         </form>
 
