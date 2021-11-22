@@ -8,6 +8,7 @@ package dataaccess;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import models.Items;
 import models.Users;
 
 /**
@@ -73,6 +74,8 @@ public class UsersDB {
         EntityTransaction trans = em.getTransaction();
 
         try {
+            Items item = new Items();
+            user = item.getOwner();
             trans.begin();
             em.remove(em.merge(user));
             trans.commit();

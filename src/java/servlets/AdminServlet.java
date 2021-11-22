@@ -18,19 +18,18 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Users> users = null;
         UsersService us = new UsersService();
 
-        String action = request.getParameter("action");
-        String username = request.getParameter("uName");
+        HttpSession session = request.getSession();
+        session.invalidate();
+
         try {
-            users = us.getAll();
+            List<Users> users = us.getAll();
             request.setAttribute("users", users);
         } catch (Exception ex) {
             Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        HttpSession session = request.getSession();
-        session.invalidate();
+
         request.getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
         return;
     }
@@ -43,10 +42,6 @@ public class AdminServlet extends HttpServlet {
         UsersService us = new UsersService();
 
         //getting the values
-        String username = request.getParameter("uName");
-        String firstname = request.getParameter("fName");
-        String lastname = request.getParameter("lName");
-
         String action = request.getParameter("action");
         boolean active = Boolean.parseBoolean(request.getParameter("active"));
 
@@ -63,11 +58,17 @@ public class AdminServlet extends HttpServlet {
                     }
                     break;
                 case "deleteUser":
-                    us.delete(username);
+                    String usernameDelete = request.getParameter("uName");
+                    Users deleteUsers = us.get(usernameDelete);
+                    String deleteUser = deleteUsers.toString();
+                    us.delete(deleteUser);
                     break;
                 case "editUser":
-                    Users editUsers = us.get(username);
-                    request.setAttribute("editUsers", editUsers);
+                    String usernameEdit = request.getParameter("uName");
+                    String firstnameEdit = request.getParameter("fName");
+                    String lastnameEdit = request.getParameter("lName");
+                    Users editUsers = us.get(usernameEdit);
+                    request.setAttribute("editUsers", us.getAll());
                     break;
                 case "saveEdit":
                     String editUsername = request.getParameter("editUsername");

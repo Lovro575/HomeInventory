@@ -32,16 +32,18 @@
             </tr>
 
             <tr>
-            <form action="inventory" method="POST">
+            <form method="POST" action="inventory">
                 <c:forEach var="items" items="${items}">
                     <c:forEach var="categories" items="${categories}">
-                        <td <input name="itemCategory" type="hidden" value="${categories.categoryID}">${categories.categoryID} </td>
-                        <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
-                        <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
-                        <td>
-                            <input type="submit" value="Delete">
-                            <input type="hidden" name="action" value="delete">
-                        </td>
+                        <tr>
+                            <td <input name="itemCategory" type="hidden" value="${categories.categoryName}">${categories.categoryName} </td>
+                            <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
+                            <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
+                            <td>
+                                <input type="submit" value="Delete">
+                                <input type="hidden" name="action" value="delete">
+                            </td>
+                        </tr>
                     </c:forEach>
                 </c:forEach>
             </form>

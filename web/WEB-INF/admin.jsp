@@ -44,11 +44,10 @@
                         <td>
                             <input type="submit" value="Edit"> 
                             <input type="hidden" name="action" value="editUser">
-                            
                         </td>
                         <td>
                             <input type="submit" value="Delete">
-                            <input type="hidden" name="action" value="deleteUser"> <br>
+                            <input type="hidden" name="action" value="deleteUser">
                         </td>
                     </tr>
                 </c:forEach>
@@ -96,7 +95,7 @@
             <br>
             Active:<input name="active" type="checkbox">
             <br>
-            <input type="submit" value="Save">
+            <input type="submit" value="Save Edits">
             <input type="hidden" name="action" value="saveEdit">
         </c:if>
     </form>
