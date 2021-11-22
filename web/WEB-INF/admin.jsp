@@ -27,23 +27,24 @@
                 <td>First Name</td>
                 <td>Lase Name</td>
                 <td>Active</td>
-                <td>Delete</td>
                 <td>Edit</td>
+                <td>Delete</td>
             </tr>
-
+            
             <tr>
             <form method="POST" action="admin">
                 <c:forEach items="${users}" var="users">
                     <tr>
-                        <td name="uName" value="${users.username}">${users.username}</td> 
-                        <td name="fName" value="${users.firstName}">${users.firstName}</td>
-                        <td name="lName" value="${users.lastName}">${users.lastName}</td>
+                        <td> <input name="uName" type="hidden" value="${users.username}">${users.username} </td> 
+                        <td> <input name="fName" type="hidden" value="${users.firstName}">${users.firstName} </td>
+                        <td> <input name="lName" type="hidden" value="${users.lastName}">${users.lastName} </td>
                         <td>
                             <input type="checkbox" disabled>
                         </td>
                         <td>
                             <input type="submit" value="Edit"> 
                             <input type="hidden" name="action" value="editUser">
+                            
                         </td>
                         <td>
                             <input type="submit" value="Delete">

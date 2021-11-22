@@ -43,50 +43,45 @@ public class AdminServlet extends HttpServlet {
         UsersService us = new UsersService();
 
         //getting the values
-        String username2 = request.getParameter("uName");
-        String fistname2 = request.getParameter("fName");
-        String lastname2 = request.getParameter("lName");
-        
+        String username = request.getParameter("uName");
+        String firstname = request.getParameter("fName");
+        String lastname = request.getParameter("lName");
+
         String action = request.getParameter("action");
         boolean active = Boolean.parseBoolean(request.getParameter("active"));
 
         try {
             switch (action) {
                 case "saveAdd":
-                    String username = request.getParameter("username");
-                    String password = request.getParameter("password");
-                    String email = request.getParameter("email");
-                    String firstname = request.getParameter("firstname");
-                    String lastname = request.getParameter("lastname");
-                    if (username.length() > 0 && password.length() > 0 && email.length() > 0 && firstname.length() > 0 && lastname.length() > 0) {
-                        us.insert(username, password, email, firstname, lastname, active, active);
-                        break;
+                    String addUsername = request.getParameter("username");
+                    String addPassword = request.getParameter("password");
+                    String addEmail = request.getParameter("email");
+                    String addFirstname = request.getParameter("firstname");
+                    String addLastname = request.getParameter("lastname");
+                    if (addUsername.length() > 0 && addPassword.length() > 0 && addEmail.length() > 0 && addFirstname.length() > 0 && addLastname.length() > 0) {
+                        us.insert(addLastname, addPassword, addEmail, addFirstname, addLastname, active, active);
                     }
                     break;
                 case "deleteUser":
-                    us.delete(username2);
+                    us.delete(username);
                     break;
                 case "editUser":
-                    Users editUsers = us.get(username2);
+                    Users editUsers = us.get(username);
                     request.setAttribute("editUsers", editUsers);
-//                    request.setAttribute("username", username);
-//                    request.setAttribute("password", password);
-//                    request.setAttribute("email", email);
-//                    request.setAttribute("firstname", firstname);
-//                    request.setAttribute("lastname", lastname);
                     break;
                 case "saveEdit":
-                    //editUsername editEmail editFirstname editLastname
                     String editUsername = request.getParameter("editUsername");
                     String editPassword = request.getParameter("editPassword");
                     String editEmail = request.getParameter("editEmail");
                     String editFirstname = request.getParameter("editFirstname");
                     String editLastname = request.getParameter("editLastname");
-                    us.update(editUsername, editPassword, editEmail, editFirstname, editLastname, active, active);
+                    if (editUsername.length() > 0 && editPassword.length() > 0 && editEmail.length() > 0 && editFirstname.length() > 0 && editLastname.length() > 0) {
+                        us.update(editUsername, editPassword, editEmail, editFirstname, editLastname, active, active);
+                    }
                     break;
             }
-            request.getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
-            return;
+//            request.getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
+//            return;
         } catch (Exception ex) {
             Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

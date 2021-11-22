@@ -1,5 +1,6 @@
 package servlets;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,13 +21,11 @@ public class InventoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Items> items = null;
+        // List<Items> items = null;
         ItemsService is = new ItemsService();
-        List<Categories> categories = null;
-        CategoriesService cs = new CategoriesService();
 
         try {
-            items = is.getAll();
+            List<Items> items = is.getAll();
             request.setAttribute("items", items);
         } catch (Exception ex) {
             Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -39,26 +38,25 @@ public class InventoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //List<Items> items = null;
+        
         ItemsService is = new ItemsService();
+        CategoriesService cs = new CategoriesService();
         
         HttpSession session = request.getSession();
-           
+
         String action = request.getParameter("action");
-        String dropDownCategory = request.getParameter("category");
-        int itemCategotyNumber = Integer.parseInt("dropDownCategory");
+        int dropDownCategory = Integer.parseInt(request.getParameter("category"));
         String itemName = request.getParameter("name");
         String itemPrice = request.getParameter("price");
-         double itemPriceNumber = Double.parseDouble(itemPrice);
-        
+        double itemPriceNumber = Double.parseDouble(itemPrice);
+
         try {
-            switch(action) {
+            switch (action) {
                 case "saveAdd":
                     Items itemToAdd = new Items();
                     String owner = (String) session.getAttribute("sessionUsername");
-                    if(dropDownCategory.length() > 0 && itemName.length() > 0 && itemPrice.length() > 0) {
-                        is.insert(itemToAdd.getItemID(), itemCategotyNumber, itemName, itemPriceNumber, owner);
+                    if (dropDownCategory > 0 && itemName.length() > 0 && itemPrice.length() > 0) {
+                        is.insert(itemToAdd.getItemID(), dropDownCategory, itemName, itemPriceNumber, owner);
                         List<Items> items = is.getAll();
                         request.setAttribute("items", items);
                     }
@@ -72,10 +70,17 @@ public class InventoryServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             List<Items> items = is.getAll();
             request.setAttribute("items", items);
+        } catch (Exception ex) {
+            Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            List<Categories> categories = cs.getAll();
+            request.setAttribute("categories", categories);
         } catch (Exception ex) {
             Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
