@@ -24,50 +24,44 @@
         <table cellpadding="5" border="1">
 
             <tr>
-                <td>Category</td> 
-            </tr>
-            <form method="POST" action="inventory">
-                <c:forEach var="categories" items="${categories}">
-                    <tr>
-                        <td <input name="itemCategory" type="hidden" value="${categories.categoryName}">${categories.categoryName} </td>
-                    </tr>
-                </c:forEach>
-            </form>
-            <tr>
+                <td>Category</td>
                 <td>Name</td>
                 <td>Price</td>
                 <td>Delete</td>
             </tr>
-            <form method="POST" action="inventory">
-            <c:forEach var="items" items="${items}">
-                <tr>
-                    <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
-                    <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
-                    <td>
-                        <input type="submit" value="Delete">
-                        <input type="hidden" name="action" value="delete">
-                    </td>
-                </tr>
-            </c:forEach>
-        </form>
 
+            <tr>
+            <form method="POST" action="inventory">
+                <c:forEach var="items" items="${items}">
+                    <tr>
+                        <td <input name="itemCategory" type="hidden" value="${items.category.categoryName}">${items.category.categoryName} </td>
+                        <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
+                        <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
+                        <td>
+                            <input type="submit" value="Delete">
+                            <input type="hidden" name="action" value="delete">
+                        </td>
+                    </tr>
+                </c:forEach>
+
+            </form>
+        </tr>
     </table>
 
     <!--Add item form-->
     <form method="POST" action="inventory"> 
         <h2>Add Item</h2>
         <select name="category">
-            <option value="Kitchen">Kitchen</option>
-            <option value="Bathroom">Bathroom</option>
-            <option value="Living room">Living room</option>
-            <option value="Basement">Basement</option>
-            <option value="Bedroom">Bedroom</option>
-            <option value="Garage">Garage</option>
-            <option value="Office">Office</option>
-            <option value="Utility room">Utility room</option>
-            <option value="Storage">Storage</option>
+            <option value="1">Kitchen</option>
+            <option value="2">Bathroom</option>
+            <option value="3">Living room</option>
+            <option value="4">Basement</option>
+            <option value="5">Bedroom</option>
+            <option value="6">Garage</option>
+            <option value="7">Office</option>
+            <option value="8">Utility room</option>
+            <option value="9">Storage</option>
         </select>
-
         <br>
         <label>Name:</label>
         <input type="text" name="name" value="">

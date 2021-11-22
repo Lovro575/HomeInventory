@@ -63,7 +63,7 @@ public class InventoryServlet extends HttpServlet {
                     Items itemToAdd = new Items();
                     String owner = (String) session.getAttribute("sessionUsername");
                     if (dropDownCategory > 0 && itemName.length() > 0 && itemPrice > 0) {
-                        is.insert(50, dropDownCategory, itemName, itemPrice, owner);
+                        is.insert(itemToAdd.getItemID(), dropDownCategory, itemName, itemPrice, owner);
 //                        List<Items> items = is.getAll();
 //                        request.setAttribute("items", items);
                     }
