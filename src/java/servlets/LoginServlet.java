@@ -1,5 +1,6 @@
 package servlets;
 
+import dataaccess.UsersDB;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,13 +45,18 @@ public class LoginServlet extends HttpServlet {
         } else if (username.equals("admin") && password.equals("password") || username.equals("admin2")) {
             response.sendRedirect("/HomeInventory/admin");
         } else {
+            //hard coded version
             if (username.equals("barb") && password.equals("password")) {
                     response.sendRedirect("/HomeInventory/inventory");
                 }
+
             //getting the users from the database
 //            try {
-//                users = us.getAll();
-//                if (users.getClass().equals(username.getClass()) && password.equals("password")) {
+//                List<Users> allUsers = us.getAll();
+//                request.setAttribute("allUsers", allUsers);
+//                String validUsers = (String) session.getAttribute("allUsers");
+//                UsersDB user = new UsersDB();
+//                if (username.equals(allUsers) && password.equals(allUsers)) {
 //                    response.sendRedirect("/HomeInventory/inventory");
 //                }
 //            } catch (Exception ex) {

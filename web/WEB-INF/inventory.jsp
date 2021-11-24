@@ -34,9 +34,11 @@
             <form method="POST" action="inventory">
                 <c:forEach var="items" items="${items}">
                     <tr>
-                        <td <input name="itemCategory" type="hidden" value="${items.category.categoryName}">${items.category.categoryName} </td>
-                        <td <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
-                        <td <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
+                        <td>
+<!--                            <input type="hidden" name="itemID" value="${items.itemID}">-->
+                            <input name="itemCategory" type="hidden" value="${items.itemID}">${items.category.categoryName} </td>
+                        <td> <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
+                        <td> <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
                         <td>
                             <input type="submit" value="Delete">
                             <input type="hidden" name="action" value="delete">
@@ -52,15 +54,9 @@
     <form method="POST" action="inventory"> 
         <h2>Add Item</h2>
         <select name="category">
-            <option value="1">Kitchen</option>
-            <option value="2">Bathroom</option>
-            <option value="3">Living room</option>
-            <option value="4">Basement</option>
-            <option value="5">Bedroom</option>
-            <option value="6">Garage</option>
-            <option value="7">Office</option>
-            <option value="8">Utility room</option>
-            <option value="9">Storage</option>
+            <c:forEach items="${categories}" var="categories">
+                <option value="${categories.categoryID}">${categories.categoryName}</option>
+            </c:forEach>
         </select>
         <br>
         <label>Name:</label>
