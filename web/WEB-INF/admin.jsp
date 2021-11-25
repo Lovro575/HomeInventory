@@ -42,17 +42,17 @@
 
                         <td>
                             <c:if test="${users.active == true}">
-                            <td>
-                                <input type="checkbox" disabled checked>
-                            </td>
-                        </c:if>
+                                <td>
+                                    <input type="checkbox" disabled checked>
+                                </td>
+                            </c:if>
                         </td>
                         <td>
                             <c:if test="${users.isAdmin == true}">
-                            <td>
-                                <input type="checkbox" disabled checked>
-                            </td>
-                        </c:if>
+                                <td>
+                                    <input type="checkbox" disabled checked>
+                                </td>
+                            </c:if>
                         </td>
                         <td>
                             <input type="submit" value="Edit"> 
