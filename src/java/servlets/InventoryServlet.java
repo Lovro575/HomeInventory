@@ -57,18 +57,18 @@ public class InventoryServlet extends HttpServlet {
         try {
             switch (action) {
                 case "saveAdd":
-                    int itemID1 = Integer.parseInt(request.getParameter("itemID"));
+                    //int itemID1 = Integer.parseInt(request.getParameter("itemID"));
                     int dropDownCategory = Integer.parseInt(request.getParameter("category"));
                     String itemName = request.getParameter("name");
                     double itemPrice = Double.parseDouble(request.getParameter("price"));
                     String owner = (String) session.getAttribute("sessionUsername");
 
                     if (dropDownCategory > 0 && itemName.length() > 0 && itemPrice > 0) {
-                        is.insert(itemID1, dropDownCategory, itemName, itemPrice, owner);
+                        is.insert(50, dropDownCategory, itemName, itemPrice, owner);
                     }
                     break;
                 case "delete":
-                    int itemID2 = Integer.parseInt(request.getParameter("itemID"));
+                    int itemID2 = Integer.parseInt(request.getParameter("itemCategory"));
                     if (itemID2 > 0) {
                         is.delete(itemID2);
                     }

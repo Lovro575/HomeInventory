@@ -62,9 +62,9 @@
                             <input type="hidden" value="${users.username}">
                         </td>
                         <td>
-                            <a href="admin?action=deleteUser&amp;uName=${users.username}">Delete</a>
-                            <!--                            <input type="submit" value="Delete">
-                                                        <input type="hidden" name="action" value="deleteUser">-->
+<!--                            <a href="admin?action=deleteUser&amp;uName=${users.username}">Delete</a>-->
+                            <input type="submit" value="Delete">
+                            <input type="hidden" name="action" value="deleteUser">
                         </td>
                     </tr>
                 </c:forEach>

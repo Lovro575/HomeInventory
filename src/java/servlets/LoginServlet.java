@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/HomeInventory/admin");
         } else {
             //hard coded version
-            if (username.equals("barb") && password.equals("password")) {
+            if (username.equals("barb") && password.equals("password") || username.equals("anne")) {
                     response.sendRedirect("/HomeInventory/inventory");
                 }
 
