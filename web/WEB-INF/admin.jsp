@@ -55,14 +55,11 @@
                         </c:if>
                         </td>
                         <td>
-<!--                            <a href="admin?action=editUser&amp;uName=${users.username}">Edit</a>-->
-
                             <input type="submit" value="Edit"> 
                             <input type="hidden" name="action" value="editUser">
-                            <input type="hidden" value="${users.username}">
+
                         </td>
                         <td>
-<!--                            <a href="admin?action=deleteUser&amp;uName=${users.username}">Delete</a>-->
                             <input type="submit" value="Delete">
                             <input type="hidden" name="action" value="deleteUser">
                         </td>

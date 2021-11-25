@@ -55,7 +55,7 @@ public class AdminServlet extends HttpServlet {
                     String addLastname = request.getParameter("lastname");
                     if (addUsername.length() > 0 && addPassword.length() > 0 && addEmail.length() > 0 && addFirstname.length() > 0 && addLastname.length() > 0) {
                         us.insert(addUsername, addPassword, addEmail, addFirstname, addLastname, active, active);
-                        //users = us.getAll();
+                        users = us.getAll();
                         request.setAttribute("users", users);
                     }
                     break;
