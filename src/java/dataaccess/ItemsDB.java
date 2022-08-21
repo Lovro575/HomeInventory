@@ -16,10 +16,10 @@ import models.Users;
  * @author Lovro H
  */
 public class ItemsDB {
-    
+
     public List<Items> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        
+
         try {
             List<Items> items = em.createNamedQuery("Items.findAll", Items.class).getResultList();
             return items;
@@ -27,10 +27,10 @@ public class ItemsDB {
             em.close();
         }
     }
-    
+
     public Items get(int itemID) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        
+
         try {
             Items items = em.find(Items.class, itemID);
             return items;
@@ -38,14 +38,14 @@ public class ItemsDB {
             em.close();
         }
     }
-    
+
     public void insert(Items item) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        
+
         try {
             Users user = item.getOwner();
-            user.getItemsList().add(item);
+            user.getItemCollection().add(item);
             trans.begin();
             em.persist(item);
             em.merge(user);
@@ -56,11 +56,11 @@ public class ItemsDB {
             em.close();
         }
     }
-    
+
     public void update(Items item) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        
+
         try {
             trans.begin();
             em.merge(item);
@@ -71,14 +71,14 @@ public class ItemsDB {
             em.close();
         }
     }
-    
+
     public void delete(Items item) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        
+
         try {
             Users user = item.getOwner();
-            user.getItemsList().remove(item);
+            user.getItemCollection().remove(item);
             trans.begin();
             em.remove(em.merge(item));
             em.merge(user);
@@ -89,5 +89,5 @@ public class ItemsDB {
             em.close();
         }
     }
-    
+
 }

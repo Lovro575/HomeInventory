@@ -28,46 +28,75 @@
                 <td>Name</td>
                 <td>Price</td>
                 <td>Delete</td>
+                <td>Edit</td>
             </tr>
 
-            <tr>
-            <form method="POST" action="inventory">
-                <c:forEach var="items" items="${items}">
-                    <tr>
-                        <td>
-<!--                            <input type="hidden" name="itemID" value="${items.itemID}">-->
-                            <input name="itemCategory" type="hidden" value="${items.itemID}">${items.category.categoryName} </td>
-                        <td> <input name="itemName" type="hidden" value="${items.itemName}">${items.itemName} </td>
-                        <td> <input name="itemName" type="hidden" value="${items.price}">${items.price} </td>
-                        <td>
-                            <input type="submit" value="Delete">
-                            <input type="hidden" name="action" value="delete">
-                        </td>
-                    </tr>
-                </c:forEach>
+            <!--item table-->
 
-            </form>
-        </tr>
-    </table>
+            <c:forEach var="items" items="${items}">
+                <tr> 
+                    <td>${items.category.categoryName}</td>
+                    <td>${items.itemName}</td>
+                    <td>${items.price}</td>
 
-    <!--Add item form-->
-    <form method="POST" action="inventory"> 
-        <h2>Add Item</h2>
-        <select name="category">
-            <c:forEach items="${categories}" var="categories">
-                <option value="${categories.categoryID}">${categories.categoryName}</option>
+                    <td>
+                        <a href="inventory?action=delete&amp;itemID=${items.itemID}">Delete</a>
+                    </td>
+
+                    <td>
+                        <a href="inventory?action=edit&amp;itemID=${items.itemID}&amp;
+                           categoryName=${items.category.categoryName}
+                           &amp;itemName=${items.itemName}&amp
+                           &amp;itemPrice=${items.price}">Edit</a>
+                    </td>
+
+                </tr>
             </c:forEach>
-        </select>
-        <br>
-        <label>Name:</label>
-        <input type="text" name="name" value="">
-        <br>
-        <label>Price:</label>
-        <input type="text" name="price" value="">
-        <br>
-        <input type="submit" value="Save">
-        <input type="hidden" name="action" value="saveAdd">
-    </form>
 
-</body>
+
+        </table>
+
+        <!--Add item form-->
+        <form method="POST" action="inventory"> 
+            <h2>Add Item</h2>
+            <select name="category">
+                <c:forEach items="${categories}" var="categories">
+                    <option name="itemid" value="${categories.categoryID}">${categories.categoryName}</option>
+                </c:forEach>
+            </select>
+            <br>
+            <label>Name:</label>
+            <input type="text" name="name" value="">
+            <br>
+            <label>Price:</label>
+            <input type="text" name="price" value="">
+            <br>
+            <input type="submit" value="Save">
+            <input type="hidden" name="action" value="saveAdd">
+        </form>
+
+        <br>
+        <br>
+
+        <!--Edit item form-->
+        <form methon="POST" action="inventory">
+            <select name="editCategory">
+                <c:forEach var="categories" items="${categories}">
+                    <option value="${categories.categoryID}">${categories.categoryName}</option>
+                </c:forEach>
+            </select> 
+            <br>  
+            <label>Name:</label>
+            <input type="text" name="editItemName" value="${itemName}">
+            <br>
+            <label>Price:</label>
+            <input type="text" name="editItemPrice" value="${itemPrice}">
+            <br>
+            <input type="submit" value="Save">
+            <input type="hidden" name="action" value="saveEdit">
+        </form>
+
+        <p>${deleted}</p> 
+
+    </body>
 </html>

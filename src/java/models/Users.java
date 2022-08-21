@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -61,7 +62,7 @@ public class Users implements Serializable {
     @Column(name = "IsAdmin")
     private boolean isAdmin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    private List<Items> itemsList;
+    private Collection<Items> itemCollection;
 
     public Users() {
     }
@@ -137,12 +138,12 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public List<Items> getItemsList() {
-        return itemsList;
+    public Collection<Items> getItemCollection() {
+        return itemCollection;
     }
 
-    public void setItemsList(List<Items> itemsList) {
-        this.itemsList = itemsList;
+    public void setItemCollection(Collection<Items> itemCollection) {
+        this.itemCollection = itemCollection;
     }
 
     @Override
@@ -169,5 +170,5 @@ public class Users implements Serializable {
     public String toString() {
         return "models.Users[ username=" + username + " ]";
     }
-    
+
 }
