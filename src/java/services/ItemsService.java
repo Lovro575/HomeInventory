@@ -31,8 +31,8 @@ public class ItemsService {
         return items;
     }
 
-    public void insert(int category, String itemName, double price, String owner) throws Exception {
-        Items items = new Items(itemName, price);
+    public void insert(int itemID, int category, String itemName, double price, String owner) throws Exception {
+        Items items = new Items(itemID, itemName, price);
 
         //get the category
         CategoriesDB categoriesDB = new CategoriesDB();
@@ -48,9 +48,9 @@ public class ItemsService {
         ItemsDB itemsDB = new ItemsDB();
         itemsDB.insert(items);
     }
-
+    
     public void update(int itemID, int category, String itemName, double price, String owner) throws Exception {
-        Items items = new Items(itemName, price);
+        Items items = new Items(itemID, itemName, price);
 
         //get the category
         CategoriesDB categoriesDB = new CategoriesDB();

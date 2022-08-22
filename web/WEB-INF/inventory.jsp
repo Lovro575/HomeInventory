@@ -79,7 +79,7 @@
         <br>
 
         <!--Edit item form-->
-        <form methon="POST" action="inventory">
+        <form method="POST" action="inventory">
             <select name="editCategory">
                 <c:forEach var="categories" items="${categories}">
                     <option value="${categories.categoryID}">${categories.categoryName}</option>
@@ -92,8 +92,8 @@
             <label>Price:</label>
             <input type="text" name="editItemPrice" value="${itemPrice}">
             <br>
-            <input type="submit" value="Save">
             <input type="hidden" name="action" value="saveEdit">
+            <input type="submit" value="Save">
         </form>
 
         <p>${deleted}</p> 

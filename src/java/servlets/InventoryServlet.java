@@ -94,7 +94,7 @@ public class InventoryServlet extends HttpServlet {
                 String owner = (String) session.getAttribute("sessionUsername");
 
                 if (dropDownCategory > 0 && itemName.length() > 0 && itemPrice > 0) {
-                    is.insert(dropDownCategory, itemName, itemPrice, owner);
+                    is.insert(0, dropDownCategory, itemName, itemPrice, owner);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(InventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,6 +105,7 @@ public class InventoryServlet extends HttpServlet {
         if (action != null && action.equals("saveEdit")) {
             try {
                 int itemID = (int) session.getAttribute("itemID");
+                //int itemID = Integer.parseInt(request.getParameter("itemID"));
                 int editCategory = Integer.parseInt(request.getParameter("editCategory"));
                 String editItemName = request.getParameter("editItemName");
                 double editItemPrice = Double.parseDouble(request.getParameter("editItemPrice"));
